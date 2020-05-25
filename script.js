@@ -30,6 +30,14 @@ function mousePressed() {
         {
             label: targetLabel
         }
+        model.addData(inputs, target);
+        stroke(0);
+        noFill();
+        ellipse(mouseX, mouseY, 24);
+        fill(0);
+        noStroke();
+        textAlign(CENTER, CENTER);
+        text(targetLabel, mouseX, mouseY);
     }
 
 
