@@ -13,18 +13,24 @@ function setup() {
     task: 'classification',
     debug: true
     };
+    model = ml5.neuralNetwork(options);
+
     background(245);
 }
-
-
-
-model = ml5.neuralNetwork(options);
 
 function mousePressed() {
     let inputs = {
         x: mouseX,
         y: mouseY
     };
+
+    if(state == 'collection') 
+    {
+        let target = 
+        {
+            label: targetLabel
+        }
+    }
 
 
 }
