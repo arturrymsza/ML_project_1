@@ -35,6 +35,15 @@ function keyPressed() {
 
 }
 
+function whileTraining(epoch, loss) {
+    console.log(epoch);
+}
+
+function finishedTraining() {
+    console.log('finished training');
+    state = 'prediction';
+}
+
 function mousePressed() {
     let inputs = {
         x: mouseX,
