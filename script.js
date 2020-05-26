@@ -18,7 +18,22 @@ function setup() {
     background(245);
 }
 
+function keyPressed() {
+    if (key == 't')
+    {
+        state = 'training';
+        console.log('starting training');
+        model.normalizeData();
+        let options = {
+            epochs: 200
+        };
+        model.train(options, whileTraining, finishedTraining);
+    } else {
+        targetLabel = key.toUpperCase();
+    }
 
+
+}
 
 function mousePressed() {
     let inputs = {
