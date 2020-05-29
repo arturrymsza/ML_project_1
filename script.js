@@ -14,8 +14,32 @@ function setup() {
     debug: true
     };
     model = ml5.neuralNetwork(options);
+    model.loadData('clicks.json', dataLoaded);
 
     background(245);
+}
+
+function dataLoaded() {
+    console.log(model.data);
+    let data = model.data.data.raw;
+    for (let i = 0; i < data.Length; i++) {
+        let inputs = data[i].xs;
+        let target = data[i].ys;
+        stroke(0);
+        noFill();
+        ellipse(inputs.x, inputs.y, 24);
+        fill(0);
+        noStroke();
+        textAlign(CENTER, CENTER);
+        text(target.label, inputs.x, inputs.y);
+    }
+    state = 'training';
+    console.log('starting training');
+    model.normalizeData();
+    let options = {
+    epochs: 200
+    };
+    model.train(options, whileTraining, finishedTraining);
 }
 
 function keyPressed() {
