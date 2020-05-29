@@ -6,7 +6,7 @@ let targetLabel = 'C';
 let state = 'collection';
 
 function setup() {
-    createCanvas(600,600);
+    createCanvas(800,600);
     let options = {
     inputs: ['x', 'y'],
     outputs: ['label'],
@@ -28,7 +28,11 @@ function keyPressed() {
             epochs: 200
         };
         model.train(options, whileTraining, finishedTraining);
-    } else {
+    } 
+    else if (key == 's') {
+        model.saveData('clicks');
+    } 
+    else {
         targetLabel = key.toUpperCase();
     }
 
