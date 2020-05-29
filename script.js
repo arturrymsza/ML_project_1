@@ -15,8 +15,20 @@ function setup() {
     };
     model = ml5.neuralNetwork(options);
     model.loadData('clicks.json', dataLoaded);
+    const modelInfo = {
+        model: 'model/model.json',
+        metadata: 'model/model_meta.json',
+        weights: 'model/model.weights.bin'
+    }
+
+    model.load(modelInfo, modelLoaded);
 
     background(245);
+}
+
+function modelLoaded() {
+    console.log('model loaded');
+    state = 'prediction;'
 }
 
 function dataLoaded() {
@@ -33,13 +45,13 @@ function dataLoaded() {
         textAlign(CENTER, CENTER);
         text(target.label, inputs.x, inputs.y);
     }
-    state = 'training';
+    /* state = 'training';
     console.log('starting training');
     model.normalizeData();
     let options = {
     epochs: 200
     };
-    model.train(options, whileTraining, finishedTraining);
+    model.train(options, whileTraining, finishedTraining); */
 }
 
 function keyPressed() {
@@ -56,6 +68,9 @@ function keyPressed() {
     else if (key == 's') {
         model.saveData('clicks');
     } 
+    else if (key == 'm') {
+        model.save();
+    }
     else {
         targetLabel = key.toUpperCase();
     }
