@@ -11,7 +11,8 @@ function setup() {
     inputs: ['x', 'y'],
     outputs: ['label'],
     task: 'classification',
-    debug: true
+    debug: true,
+    learningRate: 0.5
     };
     model = ml5.neuralNetwork(options);
     model.loadData('clicks.json', dataLoaded);
@@ -28,7 +29,7 @@ function setup() {
 
 function modelLoaded() {
     console.log('model loaded');
-    state = 'prediction;'
+    state = 'prediction';
 }
 
 function dataLoaded() {
@@ -45,13 +46,13 @@ function dataLoaded() {
         textAlign(CENTER, CENTER);
         text(target.label, inputs.x, inputs.y);
     }
-    /* state = 'training';
+    /*state = 'training';
     console.log('starting training');
     model.normalizeData();
     let options = {
     epochs: 200
     };
-    model.train(options, whileTraining, finishedTraining); */
+    model.train(options, whileTraining, finishedTraining);*/
 }
 
 function keyPressed() {
